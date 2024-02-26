@@ -103,7 +103,7 @@ public:
 //Sobrecarga binaria
 Rectangulo operator +(const Rectangulo &r1, const Rectangulo &r2) {
     int sumaLadosX = r1.getLadoX() + r2.getLadoX();
-    int sumaLadosY = r1.getLadoX() + r2.getLadoY();
+    int sumaLadosY = r1.getLadoY() + r2.getLadoY();
 
     Rectangulo sumaR1R2(sumaLadosX, sumaLadosY);
 
