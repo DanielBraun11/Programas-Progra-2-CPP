@@ -74,7 +74,7 @@ public:
     }
 
     //CONSTRUCTOR POR COPIA
-    Persona(const Persona &otro): nombre(otro.nombre), apellido(otro.apellido), edad(otro.edad){
+    Persona(const Persona &otro): nombre(otro.nombre), apellido(otro.apellido), edad(otro.edad), fecha(otro.fecha){
 
     }
 
@@ -158,9 +158,7 @@ void agregarPersona(vector<Persona> &lista){
 
     lista.push_back(p);
 
-    //Pruebas
-    cout<<"Dia: "<<p.getFecha().getDia()<<endl;
-    cout<<"Dia: "<<lista.at(0).getFecha().getDia()<<endl;
+
 
 }
 
@@ -168,6 +166,7 @@ void agregarPersona(vector<Persona> &lista){
 int main(){
     string respuesta, apellidoBuscado;
     int opcion;
+    bool personaencontrada{0};
     vector<Persona> almacenPersonas;
 
     do{
@@ -211,10 +210,16 @@ int main(){
                     cout<<"Nombre persona "<<almacenPersonas.at(i).getNombre()<<endl;
                     cout<<"Apellido persona "<<almacenPersonas.at(i).getApellido()<<endl;
                     cout<<"Edad persona "<<almacenPersonas.at(i).getEdad()<<endl;
-                    break;
+                    personaencontrada = true;
                 }
+
             }
-            cout<<"PERSONA NO ENCONTRADA."<<endl;
+            if(personaencontrada == false){
+                cout<<"PERSONA NO ENCONTRADA."<<endl;
+            }
+
+            personaencontrada = false;
+
             cout<<"------------------------"<<endl;
             break;
 
@@ -232,3 +237,4 @@ int main(){
 
     return 0;
 }
+
