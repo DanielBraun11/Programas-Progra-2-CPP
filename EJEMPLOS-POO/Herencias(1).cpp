@@ -59,9 +59,30 @@ public:
     }
 };
 
+class cuadrado: public figuraGeometrica {
+private:
+    float diagonal;
+public:
+    cuadrado():diagonal(0) {
+
+    }
+
+    void setDiagonal(float h){
+        diagonal = h;
+    }
+
+    float getDiagonal() const{
+        return diagonal;
+    }
+    void calcularDiagonal(){
+        diagonal = sqrt(2*pow(getLongitud(),2));
+    }
+};
+
 
 int main()
 {
+    //TRIANGULO
     triangulo T1;
 
     T1.setLongitud(4);
@@ -71,6 +92,16 @@ int main()
     T1.calcularAltura();
     cout << "\n\n\tLa altura del triangulo es: "
          << T1.getAltura();
+    
+    //CUADRADO
+    cuadrado C1;
+        
+    C1.setLongitud(2);
+    C1.setNLados(4);
+    C1.calcularDiagonal();
+    
+    cout << "\n\n\tLa diagonal del cuadrado es: "
+         << C1.getDiagonal();
 
     cout << "\n\n\t";
 
