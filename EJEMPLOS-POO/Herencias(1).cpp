@@ -1,109 +1,143 @@
 //Daniel Braun Sandino
-//HERENCIAS
+//Ejemplos de herencias - Figuras Geometricas
 
 #include <iostream>
 #include <cmath>
 
 using namespace std;
 
-class figuraGeometrica {
+class figuraGeometrica{
+
 private:
-    int nlados;
+    int nLados;
     float longitud;
+
 public:
-    figuraGeometrica():nlados(0), longitud(0){
+    //CONSTRUCTOR DEFECTO
+    figuraGeometrica():nLados(0), longitud(0){
 
     }
 
-    figuraGeometrica (int n, float l):nlados(n), longitud(l){
+    //CONSTRUCTOR PARAMETRICO
+    figuraGeometrica(int nL, float(l)):nLados(nL), longitud(l){
 
     }
 
-    float calcularPerimetro() const{
-        return nlados*longitud;
+    //GETTERS
+    int getNumLados()const {
+        return nLados;
+    }
+
+    float getLongitud()const {
+        return longitud;
+    }
+
+    //SETTERS
+    void setNumLados(int nL){
+        nLados = nL;
     }
 
     void setLongitud(float l){
         longitud = l;
     }
 
-    float getLongitud() const{
-        return longitud;
-    }
-    void setNLados(int n){
-        nlados = n;
-    }
+    //METODO CALULAR PERIEMTRO
+    float calcularPerimetro(){
+        float perimetro;
 
-    int getNLados() const{
-        return nlados;
+        perimetro = nLados * longitud;
+
+        return perimetro;
     }
 };
 
-class triangulo: public figuraGeometrica {
+class trianguloEquilatero: public figuraGeometrica{
 private:
     float altura;
+
 public:
-    triangulo():altura(0) {
+    //CONSTRUCTOR POR DEFECTO
+    trianguloEquilatero():altura(0){
 
     }
 
-    void setAltura(float h){
-        altura = h;
+    //CONSTRUCTOR POR PARAMETROS
+    trianguloEquilatero(float a): altura(a){
+
     }
 
-    float getAltura() const{
+    //GETTERS
+    float getAltura()const{
         return altura;
     }
-    void calcularAltura(){
-        altura = sqrt(pow(getLongitud(),2) - pow(getLongitud()/2,2));
+
+    //SETTERS
+    void setAltura(float a){
+        altura = a;
+    }
+
+    //CALCULAR ALTURA
+    void calcularAltura(float l){
+        altura = sqrt(pow(l,2) + pow(l,2));
     }
 };
 
-class cuadrado: public figuraGeometrica {
+class cuadrado: public figuraGeometrica{
 private:
     float diagonal;
+
 public:
-    cuadrado():diagonal(0) {
+    //CONSTRUCTOR POR DEFECTO
+    cuadrado():diagonal(0){
 
     }
 
-    void setDiagonal(float h){
-        diagonal = h;
+    //CONSTRUCTOR POR PARAMETRO
+    cuadrado(float d):diagonal(d){
+
     }
 
-    float getDiagonal() const{
+    //GETTERS
+    float getDiagonal()const{
         return diagonal;
     }
-    void calcularDiagonal(){
-        diagonal = sqrt(2*pow(getLongitud(),2));
+
+    //SETTERS
+    void setDiagonal(float d){
+        diagonal = d;
+    }
+
+    //METODO PARA CALCULAR LA DIAGONAL
+    void calcularDiagonal(float l){
+        diagonal = sqrt(pow(l,2) + pow(l,2));
     }
 };
 
+int main(){
+    trianguloEquilatero T1, T2;
+    cuadrado C1(3), C2;
 
-int main()
-{
-    //TRIANGULO
-    triangulo T1;
+    T1.setNumLados(3);
+    T1.setLongitud(5.2);
 
-    T1.setLongitud(4);
-    T1.setNLados(3);
-    cout << "\n\n\tEl perimetro del triangulo es: "
-         << T1.calcularPerimetro();
-    T1.calcularAltura();
-    cout << "\n\n\tLa altura del triangulo es: "
-         << T1.getAltura();
+    T2.calcularAltura(5);
+
+    cout<<"El perimetro es: "<<T1.calcularPerimetro()<<endl;
+
+    cout<<"La altura del triangulo T2 es igual a "<<T2.getAltura()<<endl;
+
+    cout<<"El numero de lados del triangulo T1 es "<<T1.getNumLados()<<endl; //No puedo usar diraectamente .nLados aunque la herencia sea publica
+
+    //---------------------------------------------------
+
+    cout<<"Diagonal del cuadrado C1 "<<C1.getDiagonal()<<endl;
+    C2.setLongitud(5);
+    C2.calcularDiagonal(C2.getLongitud());
+    cout<<"La diagonal del cuadrado C2: "<<C2.getDiagonal()<<endl;
     
-    //CUADRADO
-    cuadrado C1;
-        
-    C1.setLongitud(2);
-    C1.setNLados(4);
-    C1.calcularDiagonal();
-    
-    cout << "\n\n\tLa diagonal del cuadrado es: "
-         << C1.getDiagonal();
+    //---------------------------------------------------
 
-    cout << "\n\n\t";
 
+    cout<<endl;
     return 0;
 }
