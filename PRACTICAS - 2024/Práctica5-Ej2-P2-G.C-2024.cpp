@@ -38,7 +38,7 @@ public:
     }
 
     //METODO MOSTRAR ANIMAL
-    void mostrarAnimal(){
+    void mostrar()const {
         cout<<"El grupo del animal es: "<<grupo<<endl;
     }
 };
@@ -59,7 +59,7 @@ public:
     }
 
     //GETTERS
-    const string getHabitat(){
+    const string &getHabitat()const {
         return habitat;
     }
 
@@ -69,8 +69,8 @@ public:
     }
 
     //METODO MOSTRAR SALVAJE
-    void mostrarSalvaje(){
-        mostrarAnimal();
+    void mostrar()const {
+        Animal::mostrar();
         cout<<"El habitat del animal es: "<<habitat<<endl;
     }
 
@@ -92,7 +92,7 @@ public:
     }
 
     //GETTERS
-    const string getSonido(){
+    const string &getSonido()const {
         return sonido;
     }
 
@@ -102,8 +102,8 @@ public:
     }
 
     //METODO MOSTRAR DOMESTICO
-    void mostrarDomestico(){
-        mostrarAnimal();
+    void mostrar()const {
+        Animal::mostrar();
         cout<<"El sonido del animal es: "<<sonido<<endl;
     }
 };
@@ -124,7 +124,7 @@ public:
     }
 
     //GETTERS
-    const array<string,3> &getAccesorios(){
+    const array<string,3> &getAccesorios()const {
         return accesorios;
     }
 
@@ -134,8 +134,8 @@ public:
     }
 
 
-    void mostrarMascota(){
-        mostrarDomestico();
+    void mostrar()const {
+        Domestico::mostrar();
         cout<<"Los accesorios del animal son: ";
         for(int i{0} ; i<accesorios.size() ; i++){
             cout<<accesorios.at(i)<<", ";
@@ -150,9 +150,6 @@ int main(){
     vector<Salvaje> classSalvaje;
     vector<Domestico> classDomestico;
     vector<Mascota> classMascota;
-
-
-
 
 
     Animal a1("peces"), a2("aves");
@@ -172,7 +169,7 @@ int main(){
     classMascota.push_back(m2);
 
 
-
+    /*
     //Mostrar
     a1.mostrarAnimal();
     cout<<"-------------------------------------------------"<<endl;
@@ -182,6 +179,31 @@ int main(){
     cout<<"-------------------------------------------------"<<endl;
     m2.mostrarMascota();
     cout<<"-------------------------------------------------"<<endl;
+    */
+
+    //Recorro vector Animal
+    for(int i{0} ; i<classAnimal.size() ; i++){
+        classAnimal.at(i).mostrar();
+        cout<<"--------------------------"<<endl;
+    }
+
+    //Recorro vector Salvaje
+    for(int i{0} ; i<classSalvaje.size() ; i++){
+        classSalvaje.at(i).mostrar();
+        cout<<"--------------------------"<<endl;
+    }
+
+    //Recorro vecto Domestico
+    for(int i{0} ; i<classDomestico.size() ; i++){
+        classDomestico.at(i).mostrar();
+        cout<<"--------------------------"<<endl;
+    }
+
+    //Recorro vector Mascota
+    for(int i{0} ; i<classMascota.size() ; i++){
+        classMascota.at(i).mostrar();
+        cout<<"--------------------------"<<endl;
+    }
 
 
 
